@@ -1,0 +1,16 @@
+{
+  "name": "cohorts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "r": "index.js ~/Downloads",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "csvtojson": "1.1.7",
+    "yargs": "4.3.x"
+  }
+}
