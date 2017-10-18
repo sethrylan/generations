@@ -11,19 +11,17 @@ var argv = require('yargs')
   // .describe('dir', 'directory with np files.')
   .argv;
 
-
-Array.prototype.subarray=function(start,end){
-     if(!end){ end=-1;} 
-    return this.slice(start, this.length+1-(end*-1));
+Array.prototype.subarray=function(start, end){
+  if(!end) {
+    end=-1;
+  }
+  return this.slice(start, this.length+1-(end*-1));
 }
-
-console.log('starting')
 
 var file = __dirname + '/../np/np2014_d2.csv';
 if (!fs.existsSync(file)) {
   console.error(file + ' does not exist.');
 }
-
 
 async.parallel({
   d2: function(callback) {
@@ -37,7 +35,6 @@ async.parallel({
         }
       })
       .on('done', (error) => {
-          console.log('end');
           callback(error, years);
       });
   },
@@ -56,8 +53,7 @@ async.parallel({
         }
       })
       .on('done', (error) => {
-          console.log('end')
-          callback(error, years);
+        callback(error, years);
       });
   },
   d4: function(callback) {
@@ -75,8 +71,7 @@ async.parallel({
         }
       })
       .on('done', (error) => {
-          console.log('end')
-          callback(error, years);
+        callback(error, years);
       });
   }
 }, function(err, results) {
@@ -84,23 +79,5 @@ async.parallel({
   var merged = deepmerge.all([results.d2, results.d3, results.d4]);
   console.log(util.inspect(merged, false, null));
 });
-
-
-// csv()
-//   .fromFile(__dirname + '/../np/np2014_d3.csv')
-//   .on('csv', (row) => {
-//     if (row[0] === '0' && row[0] === '0' ) {
-//       row = row.map(Number);
-//       years[row[2]].death = {}
-//       years[row[2]].death.net = row[3];
-//       // _.each(row.subarray(4), function (val, i) {
-//       //   years[row[2]].death[i] = val;
-//       // });
-//     }
-//   })
-//   .on('done', (error) => {
-//       console.log('end')
-//   });
-
 
 
